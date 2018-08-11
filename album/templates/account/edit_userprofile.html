@@ -1,0 +1,12 @@
+{% extends 'album/base.html' %}
+
+
+{% block body%}
+	<div class="container">
+		<form method="POST">
+			{% csrf_token %}
+			{{form.as_p}}
+		</form>
+		<button type="submit" class="btn btn-success">Save</button>
+    </div>
+{% endblock%}

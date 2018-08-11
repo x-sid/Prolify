@@ -1,0 +1,14 @@
+{% extends 'album/base.html' %}
+{% block title %}Profile Details{% endblock %}
+
+{% block body %}
+ <div class="contain">
+ 	<div class="row">
+        {% for profile in profiles %}
+ 		<ul>
+ 		   <a href="{% url 'album:profile_detail' pk=profile.pk %}"><li><h4>{{ profile.full_name}}</h4></li></a>
+ 		</ul>
+ 		{% endfor %}
+ 	</div>
+ </div>
+{% endblock %}

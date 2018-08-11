@@ -1,0 +1,17 @@
+{% extends "album/base.html" %}
+
+{% block body %}
+
+
+<div class=container>
+    <h1>Welcome Back</h1>
+    <p><h4>please fill in the correct details to successfully login to your account</h4></p>
+    <form method="post" action="{% url 'login' %}">
+    {% csrf_token %}
+    {{ form.as_p}}
+
+    <button>Login</button> 
+    </form>
+</div>
+    
+{% endblock %}

@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF -8">
+	<title>{% block title %}ProLify{% endblock %}</title>
+    {% load staticfiles %}	
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="{% static 'css/album.css' %}">
+</head>
+<body>
+
+<div class="header">
+    <div class="container-fluid">
+    	<h1 style="color: #ffff"> ProLifY </h1>
+    </div>
+</div>
+
+<nav class="navbar navbar-inverse ">
+	<div class="container-fluid">
+	    <div class="navbar-header">
+	    	<button type="button" class="navbar-toggle" data-toggle="collapse" toggle-target="#topNavBar">
+	    	    <span class="icon-bar"></span>	
+	    	    <span class="icon-bar"></span>	
+	    	    <span class="icon-bar"></span>	
+	    	</button>
+	    </div>
+
+	    <!--items-->
+	    <div class="collapse navbar-collapse" id="topNavBar">
+	    	    {% url 'album:index' as album %}
+		    	{% url 'album:contact' as contacts %}
+		    	{% url 'album:profile_add' as profile %}
+		    	{% url 'album:userprofile' as userprofile %}
+
+		    {% if user.is_authenticated %}
+		    <ul class="nav navbar-nav">
+			    <li>
+			        <a href="{{ album }}" {% if request.path == album %}active{% endif %}>
+					  <span class="glyphicon glyphicon-picture" aria-hidden="true"></span>&nbsp; Album
+				    </a>
+			    </li>
+			    <li>
+				    <a href="{{ contacts }}" {% if request.path == contacts %} class="active" {% endif %}>
+					  <span class="glyphicon glyphicon-user" aria-hidden="true"></span>&nbsp;Contacts
+					</a>
+		        </li>
+			    <li>
+				    <a href="{{ profile }}" {% if request.path == profile %} class="active" {% endif %}>
+					  <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>&nbsp;Add Profile
+					</a>
+		        </li>
+		    </ul>
+	       
+	       <form class="navbar-form navbar-left" role="search" method="get" action="#">
+	       	   <div class="form-group">
+	       	   	   <input type="text" name="form-control" name="q" value="">
+	       	   </div>
+	       	   <button type="submit" class="btn btn-default">Search</button>
+	       </form>
+
+	       <ul class="nav navbar-nav navbar-right">
+	       	    <li>
+				    <a href="{{ userprofile }}" {% if request.path == userprofile %} class="active" {% endif %}>
+					  <span class="glyphicon glyphicon-cog" aria-hidden="true"></span>&nbsp;User Profile
+					</a>
+		        </li>
+				<li>
+				    <a href="{% url 'logout' %}">
+					  <span class="glyphicon glyphicon-off" aria-hidden="true"></span>&nbsp;Logout
+					</a>
+				</li>
+			</ul>
+			{% else %}
+			<ul class="nav navbar-nav navbar-right">
+				<li>
+				    <a href="{% url 'login' %}">
+					  <span class="glyphicon glyphicon-off" aria-hidden="true"></span>&nbsp;Login
+					</a>
+				</li>
+				<li>
+				    <a href="{% url 'album:register' %}">
+					  <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>&nbsp;Register
+					</a>
+				</li>
+	        </ul>
+	        {% endif %}
+	    </div>
+    </div>
+</nav>
+{% block body %}
+{% endblock %}
+</body>
+</html>

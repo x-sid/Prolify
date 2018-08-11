@@ -1,0 +1,16 @@
+{% extends 'album/base.html' %}
+
+{% block body %}
+  <div class="container">
+  	<div class="row">
+      <div class="profile">
+        <img src="{{contact.photo.url}}" class="img-responsive" width="300" height="300">
+        <a class="btn btn-default" href="{% url 'album:profile_edit' pk=contact.pk %}"><span class="glyphicon glyphicon-pencil"> Edit</span></a>
+  			<h4><strong>Phone Number:</strong>{{ contact.phone_number }}</h4>
+  			<h4><strong>Location:</strong>{{ contact.location }}</h4>
+        <h4><strong>Description:</strong></h4>
+        <p><h4>{{ contact.description}}</h4></p>
+      </div>
+  	</div> 
+  </div>
+{% endblock %}
