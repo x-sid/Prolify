@@ -1,0 +1,44 @@
+{% extends 'album/base.html' %}
+
+{% block body %}
+	<div class="container">
+		<div class="jumbotron">
+			{% if user.is_authenticated %}
+			<div class="container-fluid">
+			    <h2 style="color:white; text-align: center;background-color:red;width:100%"> ProLiFy</h2>
+			</div>
+			<p><h4>Prolify is an online contact album that allows registered users to save contacts with images,phone numbers,location and a little description of the contact they're saving. The aim of this app is to help improve contact backup services with the use of images which allows the users to actually know and remember through the use of images the pictorial identity of a saved contact.
+			</h4></p>
+
+			<p>
+				<h3>How it works</h3>
+				<ol>
+					<li>click on sign up and fill the sign up form</li>
+					<li> log in with your login details </li>
+					<li> click on "add profile" on the navigation bar </li>
+					<li>fill the "add profile form" with the correct details in the fields provided of the contact you want to save </li>
+					<li> click "save"</li>
+				</ol>
+			</p>
+			{% else %}
+			<h2 style="color:white; text-align: center;background-color:red;" > ProLiFy</h2>
+			<p><h4>Prolify is an online contact album that allows registered users to save contacts with images,phone numbers,location and a little description of the contact they're saving. The aim of this app is to help improve contact backup services with the use of images which allows the users to actually know and remember through the use of images the pictorial identity of a saved contact.
+			</h4></p>
+			<p>
+			<h3>How it works</h3>
+			<ol>
+				<li>click on sign up and fill the sign up form</li>
+				<li> log in with your login details </li>
+				<li> click on "add profile" on the navigation bar </li>
+				<li>fill the "add profile form" with the correct details in the fields provided of the contact you want to save </li>
+				<li> click "save"</li>
+			</ol>
+			</p>
+			<div class="col-md-offset-3 col-md-5">
+				<a href="{% url 'login' %}"><button class="btn btn-danger"> login </button></a>
+				<a href="{% url 'album:register' %}"><button class="btn btn-danger"> sign up! </button></a>
+			</div>
+		   {% endif %}
+		</div>	
+	</div>
+{% endblock %}

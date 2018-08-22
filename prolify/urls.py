@@ -12,6 +12,9 @@ urlpatterns = [
     path(r'admin/', admin.site.urls),
     re_path(r'^login/$',views.login,name='login'),
     re_path(r'^logout/$',views.logout,name='logout', kwargs={'next_page': '/login'}),
+    re_path(r'^password-reset/$',views.password_reset,name='password_reset'),
+    re_path(r'^password-reset/done/$',views.password_reset_done,name='password_reset_done'),
+    re_path(r'^password-reset/confirm/(?P<uidb64>[0-9A-Za-z]+)-(?P<token>.+)/$',views.password_reset_confirm,name='password_reset_confirm'),
     path('',include('album.urls')),
 ]
 if settings.DEBUG:

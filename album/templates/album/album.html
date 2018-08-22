@@ -1,0 +1,63 @@
+{% extends 'album/base.html' %}
+
+{% block body %}
+  <div class="albums-container container-fluid">
+    <div class="row">
+        {% for profile in profiles %}
+          <div class="col-sm-3 col-md-3 col-lg-3"> 
+            <div class="thumbnail" >
+                   
+                 <!--Album logo-->
+              <a href="{% url 'album:profile_detail' pk=profile.pk %}">
+                <img src="{{ profile.photo.url }}" class="img-responsive" width="200" height="200">
+              </a>
+
+              <h4 style="text-align: center;"><span class="glyphicon glyphicon-user"></span> {{ profile.full_name }}</h4>
+              <h4 style="text-align: center;"><span class="glyphicon glyphicon-phone-alt"></span> {{ profile.phone_number }} </h4>
+
+
+                <!--Details-->
+              <div class="col-md-offset-3">
+                <a href="{% url 'album:profile_detail' pk=profile.pk %}" class="btn btn-danger" >View Details</a>
+
+                    <!--Delete-->
+                <form action="{% url 'album:profile_delete' pk=profile.pk %}" method="post" style="display: inline;">
+                  {% csrf_token %}
+                  <input type="hidden" name="profile_id" value="{{ profile.pk }}"/>
+                  <button type="submit" class="btn btn-default btn-sm">
+                    <span class="glyphicon glyphicon-trash"></span>
+                  </button>
+                </form>
+              </div> 
+            </div>
+          </div>
+        {% endfor %} 
+      </div>
+    </div>
+  </div>
+<div class="container">
+  <div class="col-md-offset-6 col-md-6">
+    {% if profiles.has_other_pages %}
+      <ul class="pagination">
+        {% if profiles.has_previous %}
+          <li><a href="?page={{ profiles.previous_page_number }}">&laquo;</a></li>
+        {% else %}
+          <li class="disabled"><span>&laquo;</span></li>
+        {% endif %}
+        {% for i in profiles.paginator.page_range %}
+          {% if profiles.number == i %}
+            <li class="active"><span>{{ i }} <span class="sr-only">(current)</span></span></li>
+          {% else %}
+            <li><a href="?page={{ i }}">{{ i }}</a></li>
+          {% endif %}
+        {% endfor %}
+        {% if profiles.has_next %}
+          <li><a href="?page={{ profiles.next_page_number }}">&raquo;</a></li>
+        {% else %}
+          <li class="disabled"><span>&raquo;</span></li>
+        {% endif %}
+      </ul>
+    {% endif %}
+  </div>
+</div>  
+{% endblock %}

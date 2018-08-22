@@ -1,17 +1,24 @@
 {% extends "album/base.html" %}
+{% load crispy_forms_tags %}
 
 {% block body %}
 
 
 <div class=container>
-    <h1>Welcome Back</h1>
-    <p><h4>please fill in the correct details to successfully login to your account</h4></p>
-    <form method="post" action="{% url 'login' %}">
-    {% csrf_token %}
-    {{ form.as_p}}
-
-    <button>Login</button> 
-    </form>
+	<div class="col-md-offset-2 col-md-7">
+		<div class="panel panel-default">
+			<div class="panel-body">
+			    <h1>Welcome Back</h1>
+			    <p><h4>please fill in the correct details to successfully login to your account</h4></p>
+			    <form method="post" action="{% url 'login' %}">
+			    {% csrf_token %}
+			    {{ form|crispy}}
+			    <button class="btn btn-danger">Login</button> 
+			    </form>
+		        <p><h4>Forgotten your password? <a href="{% url 'password_reset' %}">Reset</a></h4></p>  
+			</div>    
+	    </div>
+	</div>
 </div>
     
 {% endblock %}

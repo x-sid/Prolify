@@ -1,14 +1,19 @@
 {% extends 'album/base.html' %}
-{% block title %}Profile Details{% endblock %}
+{% block title %}contact list{% endblock %}
 
 {% block body %}
- <div class="contain">
+ <div class="container">
  	<div class="row">
-        {% for profile in profiles %}
- 		<ul>
- 		   <a href="{% url 'album:profile_detail' pk=profile.pk %}"><li><h4>{{ profile.full_name}}</h4></li></a>
- 		</ul>
- 		{% endfor %}
+ 		<div class="panel panel-default">
+			<div class="panel-body">
+				<h3><strong>Total Contacts:</strong> {{ profile_list.count}} </h3>
+		        {% for profile in profile_list %}
+		 		<ul>
+		 		   <a href="{% url 'album:profile_detail' pk=profile.pk %}"><li><h4 style="color:black">{{ profile.full_name}}</h4></li></a>
+		 		</ul>
+		 		{% endfor %}
+		 	</div>
+		</div>		
  	</div>
  </div>
 {% endblock %}

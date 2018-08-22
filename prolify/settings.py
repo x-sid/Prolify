@@ -32,6 +32,7 @@ ALLOWED_HOSTS = []
 
 INSTALLED_APPS = [
     'album.apps.AlbumConfig',
+    'crispy_forms',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -114,6 +115,8 @@ USE_L10N = True
 
 USE_TZ = True
 
+CRISPY_TEMPLATE_PACK = 'bootstrap3'
+
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.0/howto/static-files/
@@ -128,3 +131,6 @@ MEDIA_URL='/media/'
 LOGIN_URL = 'login'     # this should coinside with url pattern of login view
 LOGOUT_URL = 'logout'   # same but for logout view
 LOGIN_REDIRECT_URL = '/' # url to main page
+
+EMAIL_HOST='127.0.0.1'
+EMAIL_PORT=1025

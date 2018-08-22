@@ -1,25 +1,50 @@
 from django.shortcuts import render,get_object_or_404,redirect
 from .models import Profile
+from django.db.models import Q 
 from django.contrib.auth.forms import PasswordChangeForm
+from django.contrib.auth.decorators import login_required 
 from django.contrib.auth import authenticate,login
 from django.contrib.auth.models import User
+from django.core.paginator import Paginator,EmptyPage,PageNotAnInteger
 from.forms import ProfileForm,RegisterUserForm,EditProfileForm
 
 
-def index(request):
-    profiles=Profile.objects.all()
-    return render(request,'album/index.html',{'profiles':profiles})
+def home(request):
+    template='album/home.html'
+    context={"home_page":"active"}
+    return render(request,template,context)
 
+@login_required
+def album(request):
+    profile_list=Profile.objects.all()
+    page=request.GET.get('page',1)
+    paginator= Paginator(profile_list,8)
+    try:
+        profiles=paginator.page(page)
+    except PageNotAnInteger:
+        profiles=paginator.page(1)
+    except EmptyPage:
+        profiles=paginator.page(page)
+
+    context={"album_page":"active",'profiles':profiles}
+    return render(request,'album/album.html',context)
+
+
+@login_required
 def contact(request):
-    profiles=Profile.objects.all()
-    return render(request,'album/contact_list.html',{'profiles': profiles})
+    profile_list=Profile.objects.all()
+    context={"contact_page":"active",'profile_list': profile_list}
+    return render(request,'album/contact_list.html',context)
 
+
+@login_required
 def profile_detail(request,pk):
     contact=get_object_or_404(Profile,pk=pk)
     args={'contact': contact}
     return render(request, 'album/profile_detail.html',args)
 
 
+@login_required
 def profile_add(request):
     if request.method =='POST':
         form=ProfileForm(request.POST,request.FILES)
@@ -28,9 +53,11 @@ def profile_add(request):
             return redirect('album:profile_detail',pk=profile.pk)
     else:
         form=ProfileForm()
-    return render(request,'album/profile_form.html',{'form':form})
+        context={'form':form,"profile_add_page":"active"}
+    return render(request,'album/profile_form.html',context)
 
 
+@login_required
 def profile_edit(request, pk):
     contact = get_object_or_404(Profile, pk=pk)
     if request.method == "POST":
@@ -43,29 +70,34 @@ def profile_edit(request, pk):
     return render(request, 'album/profile_form.html', {'form': form},)   
 
 
+@login_required
 def profile_delete(request, pk):
     profile = get_object_or_404(Profile, pk=profile.pk)
     profile.delete()
-    return redirect('index')
+    return redirect('album')
 
 
+@login_required
 def userprofile(request):
-    args={'user':request.user}
+    args={'user':request.user,"userprofile_page":"active"}
     return render(request,'account/userprofile.html',args)
 
+
+@login_required
 def edituserprofile(request):
     if request.method=='POST':
        form=EditProfileForm(request.POST,instance=request.user)
 
        if form.is_valid():
             form.save()
-            return redirect('album:edituserprofile')
+            return redirect('album:userprofile')
     else:
         form=EditProfileForm(instance=request.user)
         args={'form':form}
         return render(request,'account/edit_userprofile.html',args)
 
 
+@login_required
 def change_password(request):
     if request.method=='POST':
        form=PasswordChangeForm(data=request.POST,user=request.user)
@@ -78,13 +110,43 @@ def change_password(request):
         args={'form':form}
         return render(request,'account/change_password.html',args)
 
+
 def register(request):
     if request.method =='POST':
         form=RegisterUserForm(request.POST)
         if form.is_valid():
             form.save()
-            return redirect('/userprofile')
+            return redirect('album:success')
+        else: 
+           form=RegisterUserForm()
+           args={'form':form,"register_page":"active"}
+           return render(request,'account/registration_form.html',args)    
     else: 
        form=RegisterUserForm()
-       args={'form':form}
+       args={'form':form,"register_page":"active"}
        return render(request,'account/registration_form.html',args)       
+
+def success(request):
+    return render(request,'account/success.html')
+
+@login_required
+def search(request):
+    if request.method == 'GET':
+        
+        query= request.GET.get('q')
+
+        searchbutton= request.GET.get('submit')
+
+        if query:
+            results=Profile.objects.filter(Q(full_name__icontains=query) | Q(location__icontains=query) | Q(phone_number__icontains=query)).distinct()
+            
+            context= {'results': results,'searchbutton': searchbutton}
+
+            return render(request, 'album/album.html', context)
+
+        else:
+            return render(request, 'album/album.html')
+
+    else:
+        return render(request, 'album/album.html')
+

@@ -1,3 +1,7 @@
+body {	
+    background:white url("/static/album/images/background-photo.jpg");
+}
+
 
 .content {
     margin-left: 50px;
@@ -5,7 +9,7 @@
 }
 
 h1, h2, h3, h4,h5,h6 {
-    font-family: 'Lobster', cursive;
+   font-family:'Times New Roman', Times, serif;
 }
 
 .header {
@@ -16,3 +20,4 @@ h1, h2, h3, h4,h5,h6 {
 	margin-top: 0px;
 	margin-bottom: 0px;
 }
+
