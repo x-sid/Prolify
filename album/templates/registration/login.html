@@ -2,8 +2,7 @@
 {% load crispy_forms_tags %}
 
 {% block body %}
-
-
+{% if not user.is_authenticated %}
 <div class=container>
 	<div class="col-md-offset-2 col-md-7">
 		<div class="panel panel-default">
@@ -13,6 +12,7 @@
 			    <form method="post" action="{% url 'login' %}">
 			    {% csrf_token %}
 			    {{ form|crispy}}
+			    <p><label><input name="remember_me" type="checkbox"> Remember me</label></p>
 			    <button class="btn btn-danger">Login</button> 
 			    </form>
 		        <p><h4>Forgotten your password? <a href="{% url 'password_reset' %}">Reset</a></h4></p>  
@@ -20,5 +20,5 @@
 	    </div>
 	</div>
 </div>
-    
+{% endif %}    
 {% endblock %}

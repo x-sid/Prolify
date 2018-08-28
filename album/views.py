@@ -118,7 +118,7 @@ def register(request):
             form.save()
             return redirect('album:success')
         else: 
-           form=RegisterUserForm()
+           form=RegisterUserForm(request.POST)
            args={'form':form,"register_page":"active"}
            return render(request,'account/registration_form.html',args)    
     else: 
@@ -129,24 +129,13 @@ def register(request):
 def success(request):
     return render(request,'account/success.html')
 
+
 @login_required
 def search(request):
-    if request.method == 'GET':
-        
-        query= request.GET.get('q')
-
-        searchbutton= request.GET.get('submit')
-
-        if query:
-            results=Profile.objects.filter(Q(full_name__icontains=query) | Q(location__icontains=query) | Q(phone_number__icontains=query)).distinct()
-            
-            context= {'results': results,'searchbutton': searchbutton}
-
-            return render(request, 'album/album.html', context)
-
-        else:
-            return render(request, 'album/album.html')
-
-    else:
-        return render(request, 'album/album.html')
+    query= request.GET.get('q')
+    template='album/search.html'
+    lookups=Q(full_name__icontains=query)|Q(location__icontains=query)|Q(phone_number__icontains=query)|Q(pk__icontains=query)
+    results=Profile.objects.filter(lookups).distinct()
+    context= {'results':results}
+    return render(request,template,context)
 

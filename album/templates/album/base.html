@@ -54,12 +54,12 @@
 		        </li>
 		    </ul>
 		    <div>
-		        <form action="{% url 'album:search' %}" method="GET"> 
+		        <form action="{% url 'album:search' %}" method="GET" value="{{request.GET.q}}" pk=profile.pk> 
 				    <div class="col-md-4">
 				      <div class="input-group">
-				        <input type="text" class="form-control" placeholder="Search" id="txtSearch"/>
+				        <input type="text" name="q" class="form-control" placeholder="Search..." value="{{request.GET.q}}" pk=profile.pk/>
 				        <div class="input-group-btn">
-				          <button class="btn btn-danger" type="submit">
+				          <button class="btn btn-danger" type="submit" value="search" pk=profile.pk>
 				            <span class="glyphicon glyphicon-search"></span>
 				          </button>
 				        </div>
@@ -70,7 +70,7 @@
 	       <ul class="nav navbar-nav navbar-right">
 	       	    <li class="nav-item {{ userprofile_page }}">
 				    <a class="nav-link" href="{% url 'album:userprofile' %}">
-					  <span class="glyphicon glyphicon-cog" aria-hidden="true"></span>&nbsp;User Profile
+					  <span class="glyphicon glyphicon-cog" aria-hidden="true"></span>&nbsp;My Profile
 					</a>
 		        </li>
 				<li>
@@ -94,7 +94,7 @@
 				</li>
 				<li class="nav-item {{ register_page }}">
 				    <a class="nav-link" href="{% url 'album:register' %}">
-					  <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>&nbsp;Register
+					  <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>&nbsp;Signup
 					</a>
 				</li>
 	        </ul>

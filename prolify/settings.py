@@ -39,6 +39,10 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.contrib.sites',
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
 ]
 
 MIDDLEWARE = [
@@ -68,6 +72,15 @@ TEMPLATES = [
         },
     },
 ]
+
+
+AUTHENTICATION_BACKENDS = (
+    # Needed to login by username in Django admin, regardless of `allauth`
+    'django.contrib.auth.backends.ModelBackend',
+
+    # `allauth` specific authentication methods, such as login by e-mail
+    'allauth.account.auth_backends.AuthenticationBackend',
+)
 
 WSGI_APPLICATION = 'prolify.wsgi.application'
 
@@ -117,6 +130,8 @@ USE_TZ = True
 
 CRISPY_TEMPLATE_PACK = 'bootstrap3'
 
+SITE_ID = 1
+
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.0/howto/static-files/
@@ -128,9 +143,39 @@ MEDIA_ROOT=os.path.join(BASE_DIR,'media')
 MEDIA_URL='/media/' 
 
 # in settings.py
-LOGIN_URL = 'login'     # this should coinside with url pattern of login view
-LOGOUT_URL = 'logout'   # same but for logout view
+LOGIN_URL = '/accounts/login/'     # this should coinside with url pattern of login view
+LOGOUT_URL = '/accounts/login/'   # same but for logout view
 LOGIN_REDIRECT_URL = '/' # url to main page
+
+ACCOUNT_AUTHENTICATED_LOGIN_REDIRECTS =True
+ACCOUNT_AUTHENTICATION_METHOD ='username_email'
+ACCOUNT_CONFIRM_EMAIL_ON_GET =False
+ACCOUNT_EMAIL_CONFIRMATION_ANONYMOUS_REDIRECT_URL =LOGIN_URL
+ACCOUNT_EMAIL_CONFIRMATION_AUTHENTICATED_REDIRECT_URL = None
+ACCOUNT_EMAIL_CONFIRMATION_EXPIRE_DAYS =3
+ACCOUNT_EMAIL_CONFIRMATION_HMAC =True
+ACCOUNT_EMAIL_REQUIRED =False
+ACCOUNT_EMAIL_VERIFICATION ='optional'
+ACCOUNT_EMAIL_SUBJECT_PREFIX ='[Site]'
+ACCOUNT_DEFAULT_HTTP_PROTOCOL = 'http'
+ACCOUNT_EMAIL_CONFIRMATION_COOLDOWN =180
+ACCOUNT_EMAIL_MAX_LENGTH=254
+ACCOUNT_FORMS ={}
+ACCOUNT_LOGIN_ATTEMPTS_LIMIT =5
+ACCOUNT_LOGIN_ATTEMPTS_TIMEOUT=300
+ACCOUNT_LOGIN_ON_EMAIL_CONFIRMATION =True
+ACCOUNT_LOGOUT_ON_GET =False
+ACCOUNT_LOGOUT_ON_PASSWORD_CHANGE =False
+ACCOUNT_LOGIN_ON_PASSWORD_RESET =False
+ACCOUNT_SIGNUP_FORM_CLASS =None
+ACCOUNT_SIGNUP_PASSWORD_ENTER_TWICE =True
+ACCOUNT_USERNAME_BLACKLIST =[]
+ACCOUNT_UNIQUE_EMAIL =True
+ACCOUNT_USER_MODEL_EMAIL_FIELD ='email'
+ACCOUNT_USER_MODEL_USERNAME_FIELD ='username'
+ACCOUNT_USERNAME_MIN_LENGTH =5
+ACCOUNT_USERNAME_REQUIRED =True
+
 
 EMAIL_HOST='127.0.0.1'
 EMAIL_PORT=1025

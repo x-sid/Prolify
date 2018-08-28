@@ -24,7 +24,7 @@ urlpatterns = [
 
     re_path(r'^contacts/$', views.contact, name='contact'),
 
-     re_path(r'^results/$', views.search, name='search'),
+    re_path(r'^results/$', views.search, name='search'),
 
     #/album/profile/add/
     re_path(r'^profile/add/$', views.profile_add, name='profile_add'),

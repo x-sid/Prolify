@@ -9,13 +9,9 @@
 	    <div class="panel panel-default">
 		    <div class="panel-body">
 		        <h1> Sign Up </h1>
-		        {% for field in form %}
-				<div class="form-group">
-					<div>
-						<span class="text-danger small">{{ field.errors }}</span>
-					</div>
-				</div>
-				{% endfor %}
+		        {% if form.errors %}
+                    <p>Invalid credentials</p>
+                {% endif %}
 		        <form method="POST">
 			        {% csrf_token %}
 			        {{ form|crispy }}
