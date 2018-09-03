@@ -45,6 +45,8 @@ INSTALLED_APPS = [
     'allauth.socialaccount',
 ]
 
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -161,7 +163,7 @@ ACCOUNT_DEFAULT_HTTP_PROTOCOL = 'http'
 ACCOUNT_EMAIL_CONFIRMATION_COOLDOWN =180
 ACCOUNT_EMAIL_MAX_LENGTH=254
 ACCOUNT_FORMS ={}
-ACCOUNT_LOGIN_ATTEMPTS_LIMIT =5
+ACCOUNT_LOGIN_ATTEMPTS_LIMIT =''
 ACCOUNT_LOGIN_ATTEMPTS_TIMEOUT=300
 ACCOUNT_LOGIN_ON_EMAIL_CONFIRMATION =True
 ACCOUNT_LOGOUT_ON_GET =False

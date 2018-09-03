@@ -17,7 +17,7 @@ urlpatterns = [
 
     re_path(r'^userprofile/$',views.userprofile, name='userprofile'),
 
-    re_path(r'^change-password/$',views.change_password, name='change_password'),
+    re_path(r'^userprofile/password/$',views.change_password, name='change_password'),
     
     #album/profile/2/detail
     re_path(r'^profile/(?P<pk>[0-9]+)/detail/$',views.profile_detail, name='profile_detail'),

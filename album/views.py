@@ -3,7 +3,7 @@ from .models import Profile
 from django.db.models import Q 
 from django.contrib.auth.forms import PasswordChangeForm
 from django.contrib.auth.decorators import login_required 
-from django.contrib.auth import authenticate,login
+from django.contrib.auth import authenticate,login,update_session_auth_hash
 from django.contrib.auth.models import User
 from django.core.paginator import Paginator,EmptyPage,PageNotAnInteger
 from.forms import ProfileForm,RegisterUserForm,EditProfileForm
@@ -16,7 +16,7 @@ def home(request):
 
 @login_required
 def album(request):
-    profile_list=Profile.objects.all()
+    profile_list=Profile.objects.filter(user=request.user)
     page=request.GET.get('page',1)
     paginator= Paginator(profile_list,8)
     try:
@@ -32,7 +32,7 @@ def album(request):
 
 @login_required
 def contact(request):
-    profile_list=Profile.objects.all()
+    profile_list=Profile.objects.filter(user=request.user)
     context={"contact_page":"active",'profile_list': profile_list}
     return render(request,'album/contact_list.html',context)
 
@@ -49,7 +49,9 @@ def profile_add(request):
     if request.method =='POST':
         form=ProfileForm(request.POST,request.FILES)
         if form.is_valid():
-            profile=form.save()
+            profile=form.save(commit=False)
+            profile.user=request.user
+            profile.save
             return redirect('album:profile_detail',pk=profile.pk)
     else:
         form=ProfileForm()
@@ -72,9 +74,10 @@ def profile_edit(request, pk):
 
 @login_required
 def profile_delete(request, pk):
-    profile = get_object_or_404(Profile, pk=profile.pk)
+
+    profile = get_object_or_404(Profile,pk=pk)
     profile.delete()
-    return redirect('album')
+    return redirect('album:album')
 
 
 @login_required
@@ -100,11 +103,16 @@ def edituserprofile(request):
 @login_required
 def change_password(request):
     if request.method=='POST':
-       form=PasswordChangeForm(data=request.POST,user=request.user)
+        form=PasswordChangeForm(data=request.POST,user=request.user)
 
-       if form.is_valid():
+        if form.is_valid():
             form.save()
+            update_session_auth_hash(request,form.user)
             return redirect('album:userprofile')
+        else:
+            form=PasswordChangeForm(data=request.POST,user=request.user)
+            args={'form':form}
+            return render(request,'account/change_password.html',args)
     else:
         form=PasswordChangeForm(user=request.user)
         args={'form':form}

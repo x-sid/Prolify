@@ -20,9 +20,11 @@ class RegisterUserForm(UserCreationForm):
 
 def save(self,commit=True):
     user=super(RegisterUserForm,self).save(commit=False)
-    user.first_name=self.cleaned_data('first_name')
-    user.last_name=self.cleaned_data('last_name')
-    user.email=self.cleaned_data('email')
+    user.first_name=self.cleaned_data['first_name']
+    user.last_name=self.cleaned_data['last_name']
+    user.email=self.cleaned_data['email']
+    user.pasword=self.cleaned_data['password']
+    user.set_password(password)
 
     if password1 and password2 and password1 != password2:
             raise forms.ValidationError(
@@ -35,10 +37,9 @@ def save(self,commit=True):
 
 class EditProfileForm(UserChangeForm):
 
-
     class Meta:
         model=User
-        fields=['first_name','last_name','email','password',]
+        fields=['first_name','last_name','email']
 
     
 class ProfileForm(forms.ModelForm):
