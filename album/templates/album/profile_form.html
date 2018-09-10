@@ -1,7 +1,7 @@
 {% extends 'album/base.html' %}
 {% load crispy_forms_tags %}
 
-{% block title %}Add Profile{% endblock %}
+{% block title %}Add Contact{% endblock %}
 {% block albums_active %}active{% endblock %}
 
 
@@ -9,10 +9,10 @@
 <div class="container">
 	<div class="row">
 		<div class="col-md-offset-2 col-md-8">
-			<div class="panel panel-default">
+			<div class="panel panel-default" style="margin-top: 10px">
 				<div class="panel-body">
 					<div class="col-md-offset-1 col-md-10">
-					<h3>Add A New Profile</h3>
+					<h3>Add A New Contact</h3>
 					<form class="form-horizontal" action=""  method="post" enctype="multipart/form-data">
 						{% csrf_token %}
 						{{ form|crispy }}

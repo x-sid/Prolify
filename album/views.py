@@ -39,19 +39,20 @@ def contact(request):
 
 @login_required
 def profile_detail(request,pk):
-    contact=get_object_or_404(Profile,pk=pk)
-    args={'contact': contact}
+    profile=get_object_or_404(Profile,pk=pk)
+    args={'profile': profile}
     return render(request, 'album/profile_detail.html',args)
 
 
 @login_required
-def profile_add(request):
+def profile_add(request,pk=None):
     if request.method =='POST':
         form=ProfileForm(request.POST,request.FILES)
+        user=request.user
         if form.is_valid():
             profile=form.save(commit=False)
             profile.user=request.user
-            profile.save
+            profile.save()
             return redirect('album:profile_detail',pk=profile.pk)
     else:
         form=ProfileForm()
@@ -61,20 +62,19 @@ def profile_add(request):
 
 @login_required
 def profile_edit(request, pk):
-    contact = get_object_or_404(Profile, pk=pk)
+    profile = get_object_or_404(Profile, pk=pk)
     if request.method == "POST":
-        form = ProfileForm(request.POST,request.FILES, instance=contact)
+        form = ProfileForm(request.POST,request.FILES, instance=profile)
         if form.is_valid():
-            contact= form.save(commit=True)
-            return redirect('album:profile_detail', pk=contact.pk)
+            profile= form.save(commit=True)
+            return redirect('album:profile_detail', pk=profile.pk)
     else:
-        form = ProfileForm(instance=contact)
+        form = ProfileForm(instance=profile)
     return render(request, 'album/profile_form.html', {'form': form},)   
 
 
 @login_required
 def profile_delete(request, pk):
-
     profile = get_object_or_404(Profile,pk=pk)
     profile.delete()
     return redirect('album:album')
@@ -142,8 +142,7 @@ def success(request):
 def search(request):
     query= request.GET.get('q')
     template='album/search.html'
-    lookups=Q(full_name__icontains=query)|Q(location__icontains=query)|Q(phone_number__icontains=query)|Q(pk__icontains=query)
+    lookups=Q(first_name__icontains=query)|Q(last_name__icontains=query)|Q(location__icontains=query)|Q(phone_number__icontains=query)|Q(pk__icontains=query)
     results=Profile.objects.filter(lookups).distinct()
     context= {'results':results}
     return render(request,template,context)
-

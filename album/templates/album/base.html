@@ -1,14 +1,15 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<meta charset="UTF -8">
 	<title>{% block title %}ProLify{% endblock %}</title>
     {% load static %}	
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-   <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
     <link rel="stylesheet" href="{% static '/album/css/style.css' %}"/>
+
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
 </head>
 <body>
 
@@ -53,32 +54,39 @@
 					</a>
 		        </li>
 		    </ul>
-            <div style="margin-top: 10px;margin-bottom:0px">
-		        <form action="{% url 'album:search' %}" method="GET" value="{{request.GET.q}}" pk=profile.pk > 
-				    <div class="col-md-2 col-xs-3 col-sm-3 col-lg-2">
+			<div style="margin-top: 10px;">
+			    <form class="navbar-form navbar-center" action="{% url 'album:search' %}" method="GET" value="{{request.GET.q}}" pk=contact.pk > 
+				    <div class="col-md-2 col-xs-12 col-sm-3 col-lg-2">
 				      <div class="input-group">
-				        <input type="text" name="q" class="form-control" placeholder="Search..." value="{{request.GET.q}}" pk=profile.pk/>
+				        <input type="text" name="q" class="form-control" placeholder="Search..." value="{{request.GET.q}}" pk=contact.pk/>
 				        <div class="input-group-btn">
-				          <button class="btn btn-danger" type="submit" value="search" pk=profile.pk0P>
-				            <span class="glyphicon glyphicon-search"></span>
+				          <button class="btn btn-danger" type="submit" value="search" pk=contact.pk>
+				            <span class="glyphicon glyphicon-search"></span>&nbsp;
 				          </button>
 				        </div>
 				      </div>
 				    </div>
 				</form>
-	        </div>
-	       <ul class="nav navbar-nav navbar-right">
-	       	    <li class="nav-item {{ userprofile_page }}">
-				    <a class="nav-link" href="{% url 'album:userprofile' %}">
-					  <span class="glyphicon glyphicon-cog" aria-hidden="true"></span>&nbsp;My Profile
-					</a>
-		        </li>
-				<li>
-				    <a href="{% url 'logout' %}">
-					  <span class="glyphicon glyphicon-off" aria-hidden="true"></span>&nbsp;Logout
-					</a>
+			</div>
+	        <ul class="nav navbar-nav navbar-right">
+				<li class="dropdown">
+			        <a class="dropdown-toggle" data-toggle="dropdown" href="#">Account
+			        <span class="caret"></span></a>
+			        <ul class="dropdown-menu">
+			       	    <li class="nav-item {{ userprofile_page }}">
+						    <a class="nav-link" href="{% url 'album:userprofile' %}">
+							  <span class="glyphicon glyphicon-cog" aria-hidden="true"></span>&nbsp;My Profile
+							</a>
+				        </li>
+						<li>
+						    <a href="{% url 'logout' %}">
+							  <span class="glyphicon glyphicon-off" aria-hidden="true"></span>&nbsp;Logout
+							</a>
+						</li>
+					</ul>
 				</li>
 			</ul>
+		    </div>
 			{% else %}
 			<ul class="nav navbar-nav navbar-right">
 			{% url 'login' as login %}

@@ -3,8 +3,9 @@ from django.conf import settings
 
 # Create your models here.
 class Profile(models.Model):
-    user=models.ForeignKey(settings.AUTH_USER_MODEL,on_delete=models.CASCADE,default=1)
-    full_name=models.CharField(max_length=250,null=False,blank=False)
+    user=models.ForeignKey(settings.AUTH_USER_MODEL,on_delete=models.CASCADE,default="")
+    first_name=models.CharField(max_length=250,null=False,blank=False,default="")
+    last_name=models.CharField(max_length=250,null=False,blank=False,default="")
     nationality=models.CharField(max_length=250,blank=False,null=False)
     location=models.CharField(max_length=250,default="Abia,Nigeria")
     description=models.TextField(null=False,blank=False)
@@ -12,5 +13,5 @@ class Profile(models.Model):
     photo=models.ImageField(blank=False,null=False)
 
     def __str__(self):
-        return self.full_name
-        
+        return self.first_name
+       

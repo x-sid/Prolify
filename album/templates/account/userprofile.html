@@ -1,19 +1,17 @@
 {% extends 'album/base.html' %}
 
 {% block body %}
-<div class="container">
-	<div class="panel panel-default">
-		<div class="panel-body">
-			<tbody class=" table table-striped">
-			<tr>
+<div class="container-fluid" style="margin-top: 10px">
+	<div class="col-md-7 col-xs-12">
+		<div class="panel panel-default">
+			<div class="panel-body" style="margin-right:">
 				<h1><strong>My Profile</strong></h1>
-				<td><h3><strong>Username:</strong> {{ user.username }}</h3></td>
-				<td><h3><strong>First Name:</strong> {{ user.first_name }}</h3></td>
-				<td><h3><strong>Last Name:</strong> {{ user.last_name }}</h3></td>
-				<td><h3><strong>Email:</strong> {{ user.email }}</h3></td>
-		    </tr>
-		    </tbody>
-		    <a href="{% url 'album:edituserprofile' %}"><button class="btn btn-danger"> Edit </button></a>
+				<h3><strong>Username:</strong> {{ user.username }}</h3>
+				<h3><strong>First Name:</strong> {{ user.first_name }}</h3>
+				<h3><strong>Last Name:</strong> {{ user.last_name }}</h3>
+				<h3><strong>Email:</strong> {{ user.email }}</h3>
+			    <a href="{% url 'album:edituserprofile' %}"><button class="btn btn-danger"> Edit </button></a>
+			</div>
 		</div>
 	</div>	    
 </div>

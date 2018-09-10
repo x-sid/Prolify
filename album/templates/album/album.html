@@ -1,25 +1,23 @@
 {% extends 'album/base.html' %}
 
 {% block body %}
-  <div class="albums-container container-fluid">
+  <div class="container-fluid" style="margin-top: 10px">
     <div class="row">
       {% if user %}
       {% for profile in profiles %}
-        <div class="col-xs-6 col-sm-4 col-md-3 col-lg-3"> 
+        <div class="col-xs-6 col-sm-6 col-md-3 col-lg-3"> 
           <div class="thumbnail" >
                  
                <!--Album logo-->
             <a href="{% url 'album:profile_detail' pk=profile.pk %}">
               <img src="{{ profile.photo.url }}" class="img-responsive" width="400" height="200">
             </a>
-
-            <h4 style="text-align: center;"><span class="glyphicon glyphicon-user"></span> {{ profile.full_name }}</h4>
-            <h4 style="text-align: center;"><span class="glyphicon glyphicon-phone-alt"></span> {{ profile.phone_number }} </h4>
-
+              <h3 style="text-align: center;"><span class="glyphicon glyphicon-user"></span>: {{ profile.first_name }}</h3>
+              <h4 style="text-align: center;"><span class="glyphicon glyphicon-phone-alt"></span>: {{ profile.phone_number }} </h4>
 
               <!--Details-->
-            <div class="col-xm-offset-3 col-sm-offset-3 col-md-offset-3 col-lg-offset-3">
-              <a href="{% url 'album:profile_detail' pk=profile.pk %}" class="btn btn-danger" >View Details</a>
+            <div class="col-xs-offset-2  col-sm-offset-4 col-md-offset-3 col-lg-offset-3">
+              <a href="{% url 'album:profile_detail' pk=profile.pk %}" class="btn btn-danger">View Details</a>
 
                   <!--Delete-->
               <form action="{% url 'album:profile_delete' pk=profile.pk %}" method="post" style="display: inline;">
@@ -33,26 +31,26 @@
           </div>
         </div>
       {% endfor %}
-      {% endif%} 
+      {% endif %} 
     </div>
   </div>
 <div class="container">
   <div class="col-md-offset-6 col-md-6">
-    {% if profiles.has_other_pages %}
+    {% if  profiles.has_other_pages %}
       <ul class="pagination">
         {% if profiles.has_previous %}
-          <li><a href="?page={{ profiles.previous_page_number }}">&laquo;</a></li>
+          <li><a href="?page={{profiles.previous_page_number }}">&laquo;</a></li>
         {% else %}
           <li class="disabled"><span>&laquo;</span></li>
         {% endif %}
         {% for i in profiles.paginator.page_range %}
           {% if profiles.number == i %}
-            <li class="active" ><span>{{ i }} <span class="sr-only">(current)</span></span></li>
+            <li class="active" style="background-color: red"><span>{{ i }} <span class="sr-only">(current)</span></span></li>
           {% else %}
             <li><a href="?page={{ i }}">{{ i }}</a></li>
           {% endif %}
         {% endfor %}
-        {% if profiles.has_next %}
+        {% if contacts.has_next %}
           <li><a href="?page={{ profiles.next_page_number }}">&raquo;</a></li>
         {% else %}
           <li class="disabled"><span>&raquo;</span></li>

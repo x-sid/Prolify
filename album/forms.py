@@ -1,6 +1,6 @@
 from django.contrib.auth.models import User
 from django import forms
-from.models import Profile
+from.models import  Profile
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm,UserChangeForm
 
@@ -42,14 +42,16 @@ class EditProfileForm(UserChangeForm):
         fields=['first_name','last_name','email']
 
     
-class ProfileForm(forms.ModelForm):
-    full_name=forms.CharField(required=True,widget=forms.TextInput(attrs={'placeholder': 'Full Name'}))
+class  ProfileForm(forms.ModelForm):
+    first_name=forms.CharField(required=True,widget=forms.TextInput(attrs={'placeholder': 'First Name'}))
+    last_name=forms.CharField(required=True,widget=forms.TextInput(attrs={'placeholder': 'Last Name'}))
     nationality=forms.CharField(required=True,widget=forms.TextInput(attrs={'placeholder': 'Nationality'}))
     location=forms.CharField(required=True,widget=forms.TextInput(attrs={'placeholder': 'Location'}))
     description=forms.CharField(required=True,widget=forms.Textarea(attrs={'placeholder': 'Description'}))
     phone_number=forms.CharField(required=True,widget=forms.TextInput(attrs={'placeholder': '+234 phone number'}))
+    
 
 
     class Meta:
         model=Profile
-        fields=['full_name','nationality','location','description','phone_number','photo']
+        fields=['first_name','last_name','nationality','location','description','phone_number','photo']
