@@ -143,6 +143,6 @@ def search(request):
     query= request.GET.get('q')
     template='album/search.html'
     lookups=Q(first_name__icontains=query)|Q(last_name__icontains=query)|Q(location__icontains=query)|Q(phone_number__icontains=query)|Q(pk__icontains=query)
-    results=Profile.objects.filter(lookups).distinct()
+    results=Profile.objects.filter(lookups,user=request.user).distinct()
     context= {'results':results}
     return render(request,template,context)
