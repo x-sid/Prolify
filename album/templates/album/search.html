@@ -13,10 +13,11 @@
 	            <a href="{% url 'album:profile_detail' pk=result.pk %}">
 	                <img src="{{ result.photo.url }}" class="img-responsive" width="400" height="200">
 	            </a>
-	            <h4 style="text-align: center;"><span class="glyphicon glyphicon-user"></span> {{ result.first_name }}</h4>
-	            <h4 style="text-align: center;"><span class="glyphicon glyphicon-phone-alt"></span> {{ result.phone_number }} </h4>
-	                <!--Details-->
-	            <div class="col-xm-offset-3 col-sm-offset-3 col-md-offset-3 col-lg-offset-3">
+	            <div class="container">
+		            <h4><span class="glyphicon glyphicon-user"></span>: {{ result.first_name }}</h4>
+		            <h4><span class="glyphicon glyphicon-phone-alt"></span>: {{ result.phone_number }} </h4>
+	            </div>   <!--Details-->
+	            <div class="container">
 	                <a href="{% url 'album:profile_detail' pk=result.pk %}" class="btn btn-danger" >View Details</a>
 	                    <!--Delete-->
 	                <form action="{% url 'album:profile_delete' pk=result.pk %}" method="post" style="display: inline;">

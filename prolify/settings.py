@@ -23,7 +23,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = '6f*wr@rsdr%h)p*i*f8&bs65ef(&7ue7(treveu#8y-0kw#$+_'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = []
 
@@ -148,6 +148,15 @@ MEDIA_URL='/media/'
 LOGIN_URL = '/accounts/login/'     # this should coinside with url pattern of login view
 LOGOUT_URL = '/accounts/login/'   # same but for logout view
 LOGIN_REDIRECT_URL = '/' # url to main page
+
+LOGIN_EXEMPT_URLS = [
+    r'^/album/login/$',
+    r'^/album/register/$',
+    r'^/password-reset/$',
+    r'^/password-reset/done/$'
+    r'^/reset/(?P<uidb64>[0-9A-Za-z_\-]+)/(?P<token>[0-9A-Za-z]{1,13}-[0-9A-Za-z]{1,20})/$',
+    r'^/reset/done/$',
+]
 
 ACCOUNT_AUTHENTICATED_LOGIN_REDIRECTS =True
 ACCOUNT_AUTHENTICATION_METHOD ='username_email'
