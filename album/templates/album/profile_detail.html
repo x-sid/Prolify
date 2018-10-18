@@ -2,14 +2,15 @@
 
 {% block body %}
   <div class="container">
-  	<div class="row"><div class="panel panel-default">
-      <div class="panel-body">
+  	<div class="row">
+      <div class="panel panel-default">
+        <div class="panel-body">
           <div class="profile">
-            <img src="{{profile.photo.url}}" class="img-responsive" width="400" height="200">
+            <img src="{{profile.photo.url}}" class="img-responsive" width="400" height="100" style="min-height:400px;max-height:100px">
             <p><a class="btn btn-danger" href="{% url 'album:profile_edit' pk=profile.pk %}"><span class="glyphicon glyphicon-pencil"> Edit</span></a></p>
       			<h4><strong>Full Name:</strong> {{ profile.first_name }} {{ profile.last_name }}</h4>
             <h4><strong>Phone Number:</strong> {{ profile.phone_number }}</h4>
-      			<h4><strong>Location:</strong> {{ profile.location }}</h4>
+      			<h4><strong>Location:</strong> {{ profile.location }},{{ profile.country }}</h4>
             <h4><strong>Description:</strong></h4>
             <p><h4>{{ profile.description}}</h4></p>
           </div>

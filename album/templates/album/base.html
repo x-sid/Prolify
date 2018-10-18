@@ -6,13 +6,12 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.1.1.js"></script>
     <link rel="shortcut icon" href="{% static 'favicon.png' %}" type="image/x-icon">
     <link rel="stylesheet" href="{% static '/album/css/style.css' %}"/>
-
     <meta name="viewport" content="width=device-width,initial-scale=1.0">
 </head>
 <body>
-
 <div class="header">
     <div class="container-fluid">
     	<h1 style="color:white"> ProLifY </h1>
@@ -81,6 +80,11 @@
 							  <span class="glyphicon glyphicon-off" aria-hidden="true"></span>&nbsp;Logout
 							</a>
 						</li>
+						<li>
+						    <a href="{% url 'album:change_password' %}">
+							  <span class="glyphicon glyphicon-lock" aria-hidden="true"></span>&nbsp;Change Password
+							</a>
+						</li>
 					</ul>
 				</li>
 			</ul>
@@ -111,6 +115,10 @@
 {% endblock %}
 
 {% block body %}
+{% endblock %}
+
+
+{% block js %}
 {% endblock %}
 </body>
 </html>

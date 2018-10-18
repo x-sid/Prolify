@@ -6,7 +6,7 @@ class Profile(models.Model):
     user=models.ForeignKey(settings.AUTH_USER_MODEL,on_delete=models.CASCADE,default="")
     first_name=models.CharField(max_length=250,null=False,blank=False,default="")
     last_name=models.CharField(max_length=250,null=False,blank=False,default="")
-    nationality=models.CharField(max_length=250,blank=False,null=False)
+    country=models.CharField(max_length=250,blank=False,null=False)
     location=models.CharField(max_length=250,default="Abia,Nigeria")
     description=models.TextField(null=False,blank=False)
     phone_number=models.CharField(null=True,blank=True,max_length=14,default="+234")

@@ -2,6 +2,9 @@ body {
     background:white url("/static/album/images/background-photo.jpg");
 }
 
+.userprofile{	
+    background:white url("/static/album/images/light+grey+background.jpg");
+}
 
 .content {
     margin-left: 50px;

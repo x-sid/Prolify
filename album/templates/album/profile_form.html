@@ -18,7 +18,7 @@
 						{{ form|crispy }}
 						<div class="form-group">
 							<div class="col-sm-offset-2 col-sm-10">
-								<button type="submit" class="btn btn-danger">Save</button>
+								<button type="submit" class="btn btn-danger" id="create">Save</button>
 							</div>
 						</div>
 					</form>	
@@ -28,3 +28,8 @@
 	</div>	
 </div>
 {% endblock %}  
+
+
+{% block js %}
+<script src="/static/album/js/album.js/"></script> 
+{% endblock %}

@@ -5,32 +5,33 @@
     <div class="row">
       {% if user %}
       {% for profile in profiles %}
-        <div class="col-xs-6 col-sm-6 col-md-3 col-lg-3"> 
-          <div class="thumbnail" >
-                 
-               <!--Album logo-->
-            <a href="{% url 'album:profile_detail' pk=profile.pk %}">
-              <img src="{{ profile.photo.url }}" class="img-responsive" width="400" height="200">
-            </a>
-            <div class="container">
-              <h3><span class="glyphicon glyphicon-user"></span>: {{ profile.first_name }}</h3>
-              <h4><span class="glyphicon glyphicon-phone-alt"></span>: {{ profile.phone_number }} </h4>
-            </div>
-              <!--Details-->
-            <div class="container">
-              <a href="{% url 'album:profile_detail' pk=profile.pk %}" class="btn btn-danger">View Details</a>
-
-                  <!--Delete-->
-              <form action="{% url 'album:profile_delete' pk=profile.pk %}" method="post" style="display: inline;">
-                {% csrf_token %}
-                <input type="hidden" name="profile_id" value="{{ profile.pk }}"/>
-                <button type="submit" class="btn btn-default btn-sm">
-                  <span class="glyphicon glyphicon-trash"></span>
-                </button>
-              </form>
-            </div> 
+      <div class="col-xs-6 col-sm-6 col-md-3 col-lg-3"> 
+        <div class="thumbnail">
+               
+             <!--Album logo-->
+          <a href="{% url 'album:profile_detail' pk=profile.pk %}">
+            <img src="{{ profile.photo.url }}" class="img-responsive" width="300" height="100" style="min-height:200px;max-height:200px">
+          </a>
+          <div class="container">
+            <h4 style="color: black"><span></span><b>{{ profile.first_name }}</b><p><b>{{ profile.last_name }}</b></p></h4>
+            <h4 style="color: black"><span></span>{{ profile.location }} </h4>
           </div>
+            <!--Details-->
+          <div class="container">
+            <a href="{% url 'album:profile_detail' pk=profile.pk %}" class="btn btn-danger">Details</a>
+
+                <!--Delete-->
+            <form action="{% url 'album:profile_delete' pk=profile.pk %}" method="post" style="display: inline;">
+              {% csrf_token %}
+              <input type="hidden" name="profile_id" value="{{ profile.pk }}"/>
+              <button type="submit" class="btn btn-default btn-sm" id="delete">
+                <span class="glyphicon glyphicon-trash"></span>
+              </button>
+              <br>
+            </form>
+          </div> 
         </div>
+      </div>
       {% endfor %}
       {% endif %} 
     </div>
@@ -59,5 +60,9 @@
       </ul>
     {% endif %}
   </div>
-</div>  
+</div>
+{% endblock %}
+
+{% block js %}
+<script src="/static/album/js/album.js/"></script> 
 {% endblock %}

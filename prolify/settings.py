@@ -40,9 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django.contrib.sites',
-    'allauth',
-    'allauth.account',
-    'allauth.socialaccount',
+    
 ]
 
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
@@ -138,6 +136,10 @@ SITE_ID = 1
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.0/howto/static-files/
 
+
+SESSION_EXPIRE_AT_BROWSER_CLOSE=True
+
+
 STATIC_URL = '/static/'
 STATIC_ROOT=os.path.join(BASE_DIR,'static')
 
@@ -149,44 +151,14 @@ LOGIN_URL = '/accounts/login/'     # this should coinside with url pattern of lo
 LOGOUT_URL = '/accounts/login/'   # same but for logout view
 LOGIN_REDIRECT_URL = '/' # url to main page
 
-LOGIN_EXEMPT_URLS = [
-    r'^/album/login/$',
-    r'^/album/register/$',
+"""LOGIN_EXEMPT_URLS = [
+    r'^/account/login/$',
+    r'^/account/register/$',
     r'^/password-reset/$',
     r'^/password-reset/done/$'
     r'^/reset/(?P<uidb64>[0-9A-Za-z_\-]+)/(?P<token>[0-9A-Za-z]{1,13}-[0-9A-Za-z]{1,20})/$',
     r'^/reset/done/$',
-]
-
-ACCOUNT_AUTHENTICATED_LOGIN_REDIRECTS =True
-ACCOUNT_AUTHENTICATION_METHOD ='username_email'
-ACCOUNT_CONFIRM_EMAIL_ON_GET =False
-ACCOUNT_EMAIL_CONFIRMATION_ANONYMOUS_REDIRECT_URL =LOGIN_URL
-ACCOUNT_EMAIL_CONFIRMATION_AUTHENTICATED_REDIRECT_URL = None
-ACCOUNT_EMAIL_CONFIRMATION_EXPIRE_DAYS =3
-ACCOUNT_EMAIL_CONFIRMATION_HMAC =True
-ACCOUNT_EMAIL_REQUIRED =False
-ACCOUNT_EMAIL_VERIFICATION ='optional'
-ACCOUNT_EMAIL_SUBJECT_PREFIX ='[Site]'
-ACCOUNT_DEFAULT_HTTP_PROTOCOL = 'http'
-ACCOUNT_EMAIL_CONFIRMATION_COOLDOWN =180
-ACCOUNT_EMAIL_MAX_LENGTH=254
-ACCOUNT_FORMS ={}
-ACCOUNT_LOGIN_ATTEMPTS_LIMIT =''
-ACCOUNT_LOGIN_ATTEMPTS_TIMEOUT=300
-ACCOUNT_LOGIN_ON_EMAIL_CONFIRMATION =True
-ACCOUNT_LOGOUT_ON_GET =False
-ACCOUNT_LOGOUT_ON_PASSWORD_CHANGE =False
-ACCOUNT_LOGIN_ON_PASSWORD_RESET =False
-ACCOUNT_SIGNUP_FORM_CLASS =None
-ACCOUNT_SIGNUP_PASSWORD_ENTER_TWICE =True
-ACCOUNT_USERNAME_BLACKLIST =[]
-ACCOUNT_UNIQUE_EMAIL =True
-ACCOUNT_USER_MODEL_EMAIL_FIELD ='email'
-ACCOUNT_USER_MODEL_USERNAME_FIELD ='username'
-ACCOUNT_USERNAME_MIN_LENGTH =5
-ACCOUNT_USERNAME_REQUIRED =True
-
+]"""
 
 EMAIL_HOST='127.0.0.1'
 EMAIL_PORT=1025
