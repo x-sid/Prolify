@@ -1,0 +1,22 @@
+{% extends 'album/base.html' %}
+
+{% block body %}
+  <div class="container">
+  	<div class="row">
+      <div class="panel panel-default">
+        <div class="panel-body">
+          <div class="contact">
+            <img src="{{contact.photo.url}}" class="img-responsive" width="400" height="100" style="min-height:400px;max-height:100px">
+            <p><a class="btn btn-danger" href="{% url 'album:contact_edit' pk=contact.pk %}"><span class="glyphicon glyphicon-pencil"> Edit</span></a></p>
+      			<h4><b>Full Name:</b><i> {{ contact.first_name }} {{ contact.last_name }}</i></h4>
+            <h4><b>Phone Number:</b><i>{{ contact.phone_number }}</i></h4>
+      			<h4><b>Location:</b><i>{{ contact.location }},{{ contact.country }}</i></h4>
+            <h4><b>Created:</b><i>{{ contact.created }}</i></h4>
+            <h4 style="text-align: center;"><b><i>DESCRIPTION</i></b></h4>
+            <p><h4 style="text-align:center;margin-top:20px;"><i>{{ contact.description}}</i></h4></p>
+          </div>
+        </div>
+      </div>
+  	</div> 
+  </div>
+{% endblock %}

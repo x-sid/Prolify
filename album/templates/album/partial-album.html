@@ -1,0 +1,27 @@
+{% for contact in contacts %}
+<div class="col-xs-6 col-sm-6 col-md-3 col-lg-3"> 
+  <div class="thumbnail">   
+       <!--contact image-->
+    <a href="{% url 'album:contact_detail' pk=contact.pk %}">
+      <img src="{{ contact.photo.url }}" class="img-responsive" width="300" height="100" style="min-height:200px;max-height:200px">
+    </a>
+    <div class="container">
+      <h3 style="color: black"><span></span><p><b><em>{{ contact.first_name }} {{ contact.last_name }}<em></b></p></h3>
+      <p><h4 style="color: black"><span></span><i>{{ contact.location }}</i></h4></p>
+    </div>
+      <!--Details-->
+    <div class="container">
+      <a href="{% url 'album:contact_detail' pk=contact.pk %}" class="btn btn-danger">Details</a>
+
+    <!--Delete-->
+    <button class="btn btn-warning js-contact-delete" data-url="{% url 'album:contact_delete' pk=contact.pk %}" style="display: inline;">
+      <span class="glyphicon glyphicon-trash"></span>
+    </button>
+    </div> 
+  </div>
+</div>
+{% empty %}
+<div class="">
+  <h3 style="color:white;margin-left:10px;"><em>No contact</em></h3>
+</div>
+{% endfor %} 

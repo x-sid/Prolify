@@ -1,6 +1,6 @@
-from django.contrib.auth.models import User
+
 from django import forms
-from.models import  Profile
+from .models import  Contact
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm,UserChangeForm
 
@@ -9,8 +9,10 @@ class RegisterUserForm(UserCreationForm):
     first_name=forms.CharField(required=True,label='First Name',widget=forms.TextInput(attrs={'placeholder': 'First Name'}))
     last_name=forms.CharField(required=True,label='Last Name',widget=forms.TextInput(attrs={'placeholder': 'Last Name'}))
     email=forms.EmailField(required=True,max_length=250,widget=forms.EmailInput(attrs={'placeholder': 'Email'}))
-    password1=forms.CharField(required=True,label='password',widget=forms.PasswordInput(attrs={'class': 'form-control', 'placeholder': 'Password'}))
-    password2=forms.CharField(required=True,label='confirm password',widget=forms.PasswordInput(attrs={'class': 'form-control', 'placeholder': 'Password confirm'}))
+    password1=forms.CharField(required=True,label='password',
+        widget=forms.PasswordInput(attrs={'class': 'form-control', 'placeholder': 'Password'}))
+    password2=forms.CharField(required=True,label='confirm password',
+        widget=forms.PasswordInput(attrs={'class': 'form-control', 'placeholder': 'Password confirm'}))
     username=forms.CharField(required=True,help_text='')
 
     class Meta:
@@ -45,16 +47,15 @@ class EditProfileForm(UserChangeForm):
         fields=['username','first_name','last_name','email','password']
 
     
-class  ProfileForm(forms.ModelForm):
+class  ContactForm(forms.ModelForm):
     first_name=forms.CharField(required=True,max_length=10,widget=forms.TextInput(attrs={'placeholder': 'First Name'}))
     last_name=forms.CharField(required=True,max_length=10,widget=forms.TextInput(attrs={'placeholder': 'Last Name'}))
     country=forms.CharField(required=True,widget=forms.TextInput(attrs={'placeholder': 'Country'}))
     location=forms.CharField(required=True,widget=forms.TextInput(attrs={'placeholder': 'Location'}))
     description=forms.CharField(required=True,widget=forms.Textarea(attrs={'placeholder': 'Description'}))
     phone_number=forms.CharField(required=True,widget=forms.TextInput(attrs={'placeholder': '+234 phone number'}))
-    
 
 
     class Meta:
-        model=Profile
+        model=Contact
         fields=['first_name','last_name','country','location','description','phone_number','photo']

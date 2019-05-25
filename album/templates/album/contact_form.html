@@ -12,14 +12,13 @@
 			<div class="panel panel-default" style="margin-top: 10px">
 				<div class="panel-body">
 					<div class="col-md-offset-1 col-md-10">
-					<h3>Add A New Contact</h3>
+					<h3 style="font-weight: bolder;">Add A New Contact</h3>
 					<form class="form-horizontal" action=""  method="post" enctype="multipart/form-data">
 						{% csrf_token %}
 						{{ form|crispy }}
-						<div class="form-group">
-							<div class="col-sm-offset-2 col-sm-10">
-								<button type="submit" class="btn btn-danger" id="create">Save</button>
-							</div>
+						<div class="col-xs-12 col-md-12">
+							<a href="{% url 'album:album' %}" style="color:black;font-weight:bold;" class="btn btn-warning col-xs-6 col-md-6">cancel</a>
+							<button type="submit" style="color:black;font-weight:bold;" class="btn btn-danger col-xm-6 col-md-6" id="create">Save</button>
 						</div>
 					</form>	
 				</div>
@@ -28,8 +27,3 @@
 	</div>	
 </div>
 {% endblock %}  
-
-
-{% block js %}
-<script src="/static/album/js/album.js/"></script> 
-{% endblock %}

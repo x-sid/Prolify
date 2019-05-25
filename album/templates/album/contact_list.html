@@ -6,10 +6,10 @@
  	<div class="row">
  		<div class="panel panel-default" style="margin-top: 10px">
 			<div class="panel-body">
-				<h3><strong>Total Contacts:</strong> {{ profile_list.count}} </h3>
-		        {% for profile in profile_list %}
+				<h3><strong>Total Contacts:</strong> {{ contact_list.count}} </h3>
+		        {% for contact in contact_list %}
 		 		<ul>
-		 		   <a href="{% url 'album:profile_detail' pk=profile.pk %}"><li><h4 style="color:black"> {{ profile.first_name }} {{ profile.last_name }}</h4></li></a>
+		 		   <a href="{% url 'album:contact_detail' pk=contact.pk %}"><li><h4 style="color:black"> {{ contact.first_name }} {{ contact.last_name }}</h4></li></a>
 		 		</ul>
 		 		{% endfor %}
 		 	</div>

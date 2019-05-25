@@ -149,7 +149,7 @@ MEDIA_URL='/media/'
 # in settings.py
 LOGIN_URL = '/accounts/login/'     # this should coinside with url pattern of login view
 LOGOUT_URL = '/accounts/login/'   # same but for logout view
-LOGIN_REDIRECT_URL = '/' # url to main page
+LOGIN_REDIRECT_URL = '/album/' # url to main page
 
 """LOGIN_EXEMPT_URLS = [
     r'^/account/login/$',

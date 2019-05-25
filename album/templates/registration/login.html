@@ -11,7 +11,7 @@
 			    <p><h4>please fill in the correct details to successfully login to your account</h4></p>
 			    <form method="post" action="{% url 'login' %}">
 			    {% csrf_token %}
-			    {{ form|crispy}}
+			    {{ form|crispy }}
 			    <p><label><input name="remember_me" type="checkbox"> Remember me</label></p>
 			    <button class="btn btn-danger">Login</button> 
 			    </form>

@@ -12,7 +12,7 @@
         <div class="thumbnail">
                
              <!--Album logo-->
-          <a href="{% url 'album:profile_detail' pk=result.pk %}">
+          <a href="{% url 'album:contact_detail' pk=result.pk %}">
             <img src="{{ result.photo.url }}" class="img-responsive" width="300" height="100" style="min-height:200px;max-height:200px">
           </a>
           <div class="container">
@@ -21,12 +21,12 @@
           </div>
             <!--Details-->
           <div class="container">
-            <a href="{% url 'album:profile_detail' pk=result.pk %}" class="btn btn-danger">Details</a>
+            <a href="{% url 'album:contact_detail' pk=result.pk %}" class="btn btn-danger">Details</a>
 
                 <!--Delete-->
-            <form action="{% url 'album:profile_delete' pk=result.pk %}" method="post" style="display: inline;">
+            <form action="{% url 'album:contact_delete' pk=result.pk %}" method="post" style="display: inline;">
               {% csrf_token %}
-              <input type="hidden" name="profile_id" value="{{ result.pk }}"/>
+              <input type="hidden" name="contact_id" value="{{ result.pk }}"/>
               <button type="submit" class="btn btn-default btn-sm">
                 <span class="glyphicon glyphicon-trash"></span>
               </button>
