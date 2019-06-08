@@ -1,5 +1,6 @@
 
-<img src='/album/static/album/images/albumpage.jpg' height=350px; /> <img src='/album/static/album/images/detailspage.jpg' height=350px; />
+<img src='/album/static/album/images/albumpage.jpg' height=350px; width=400; />
+<img src='/album/static/album/images/detailspage.jpg' height=350px; width=400; />
 # Prolify
 Prolify is an online contact album that allows registered users to save contacts with images,phone numbers,location and a little description
 of the contact they're saving. The aim of this app is to help improve contact backup services  with the use of images which allows the
