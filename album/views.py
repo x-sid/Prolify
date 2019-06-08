@@ -85,6 +85,7 @@ def contact_delete(request, pk):
         contacts=Contact.objects.filter(user=request.user)
         data['html_contact_list'] = render_to_string('album/partial-album.html', {'contacts':contacts})
     else:
+        data['form_is_valid'] = False
         context={'contact':contact}
         data['html_form'] = render_to_string('album/partial-contact-delete.html',context,request=request)
     return JsonResponse(data)
