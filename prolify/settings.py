@@ -40,7 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django.contrib.sites',
-    
+    'rest_framework',
 ]
 
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
@@ -146,14 +146,11 @@ STATIC_ROOT=os.path.join(BASE_DIR,'static')
 MEDIA_ROOT=os.path.join(BASE_DIR,'media')
 MEDIA_URL='/media/' 
 
-# in settings.py
-LOGIN_URL = '/accounts/login/'     # this should coinside with url pattern of login view
-LOGOUT_URL = '/accounts/login/'   # same but for logout view
 LOGIN_REDIRECT_URL = '/album/' # url to main page
 
 """LOGIN_EXEMPT_URLS = [
-    r'^/account/login/$',
-    r'^/account/register/$',
+    r'^/login/$',
+    r'^register/$',
     r'^/password-reset/$',
     r'^/password-reset/done/$'
     r'^/reset/(?P<uidb64>[0-9A-Za-z_\-]+)/(?P<token>[0-9A-Za-z]{1,13}-[0-9A-Za-z]{1,20})/$',
@@ -162,3 +159,12 @@ LOGIN_REDIRECT_URL = '/album/' # url to main page
 
 EMAIL_HOST='127.0.0.1'
 EMAIL_PORT=1025
+
+
+REST_FRAMEWORK = {
+    # Use Django's standard `django.contrib.auth` permissions,
+    # or allow read-only access for unauthenticated users.
+    'DEFAULT_PERMISSION_CLASSES': [
+        'rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly'
+    ]
+}

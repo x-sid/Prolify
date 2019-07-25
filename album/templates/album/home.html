@@ -4,11 +4,12 @@
 	<div class="container">
 		<div class="jumbotron" style="margin-top: 20px">
 			{% if user.is_authenticated %}
+			<!-- if a user already has an account and has logged in successfully-->
 			<div class="container-fluid">
-			    <h2 style="color:white; text-align: center;background-color:red;width:100%"> ProLiFy</h2>
+			    <h2 style="color:white; text-align: center;background-color:red;width:100%">ProLiFy</h2>
 			</div>
-			<p><h4>Prolify is an online contact album that allows registered users to save contacts with images,phone numbers,location and a little description of the contact they're saving. The aim of this app is to help improve contact backup services with the use of images which allows the users to actually know and remember through the use of images the pictorial identity of a saved contact.
-			</h4></p>
+			<p><h4><i>Prolify is an online contact album that allows registered users to save contacts with images,phone numbers,location and a little description of the contact they're saving. The aim of this app is to help improve contact backup services with the use of images which allows the users to actually know and remember through the use of images the pictorial identity of a saved contact.
+			</i></h4></p>
 
 			<p>
 				<h3>How it works</h3>
@@ -21,6 +22,7 @@
 				</ol>
 			</p>
 			{% else %}
+			<!-- if a user doesn't have account or not has logged in-->
 			<h2 style="color:white; text-align: center;background-color:red;" > ProLiFy</h2>
 			<p><h4>Prolify is an online contact album that allows registered users to save contacts with images,phone numbers,location and a little description of the contact they're saving. The aim of this app is to help improve contact backup services with the use of images which allows the users to actually know and remember through the use of images the pictorial identity of a saved contact.
 			</h4></p>
@@ -33,6 +35,7 @@
 				<li>fill the "add profile form" with the correct details in the fields provided of the contact you want to save </li>
 				<li> click "save"</li>
 			</ol>
+			<!-- login and signup bottons-->
 			</p>
 			<div class="col-md-offset-3 col-md-5">
 				<a href="{% url 'login' %}"><button class="btn btn-danger"> login </button></a>
@@ -41,4 +44,5 @@
 		   {% endif %}
 		</div>	
 	</div>
+
 {% endblock %}

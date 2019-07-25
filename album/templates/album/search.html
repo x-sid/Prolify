@@ -9,8 +9,7 @@
         </div>
         {% for result in results %}
          <div class="col-xs-6 col-sm-6 col-md-3 col-lg-3"> 
-        <div class="thumbnail">
-               
+        <div class="thumbnail">   
              <!--Album logo-->
           <a href="{% url 'album:contact_detail' pk=result.pk %}">
             <img src="{{ result.photo.url }}" class="img-responsive" width="300" height="100" style="min-height:200px;max-height:200px">

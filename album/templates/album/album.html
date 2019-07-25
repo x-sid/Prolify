@@ -14,12 +14,12 @@
 </p>
 
 <div id="contact">
-  <p class="new_album">
-  {% include 'album/partial-album.html' %}
-  </p>
+  <div class="album">
+    {% include "album/partial-album.html" %}
+  </div>
 </div>
- <!-- BOOTSTRAP MODAL -->
 
+ <!--bootstrap modal -->
 <div class="modal fade" id="modal-contact">
   <div class="modal-dialog">
     <div class="modal-content">
@@ -39,7 +39,7 @@
         {% endif %}
         {% for i in contacts.paginator.page_range %}
           {% if contacts.number == i %}
-            <li class="active" style="background-color: red"><span>{{ i }} <span class="sr-only">(current)</span></span></li>
+            <li class="active" style="background-color:red;"><span>{{ i }} <span class="sr-only">(current)</span></span></li>
           {% else %}
             <li><a href="?page={{ i }}">{{ i }}</a></li>
           {% endif %}

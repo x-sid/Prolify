@@ -12,10 +12,10 @@
 <body>
 <div class="header">
     <div class="container-fluid">
-    	<h1 style="color:white"> ProLifY </h1>
+    	<h1 style="color:white"><b>ProLifY</b></h1>
     </div>
 </div>
-
+<!-- navigation bar-->
 <nav class="navbar navbar-inverse " style="margin-bottom:0px">
 	<div class="container-fluid">
 	    <div class="navbar-header">
@@ -45,13 +45,8 @@
 					  <span class="glyphicon glyphicon-user" aria-hidden="true"></span>&nbsp;Contacts
 					</a>
 		        </li>
-			    <li class="nav-item {{ contact_add_page }}">
-				    <a class="nav-link" href="{% url 'album:contact_add' %}">
-					  <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>&nbsp;Add Contact
-					</a>
-		        </li>
 		    </ul>
-      
+             <!--search bar-->
 		    <form class="navbar-form navbar-left" action="{% url 'album:search' %}" method="GET" value="{{request.GET.q}}" pk=contact.pk > 
 			    <div class="input-group">
 			        <input type="text" name="q" class="form-control" placeholder="Search..." value="{{request.GET.q}}" pk=contact.pk/>
@@ -85,6 +80,9 @@
 						</li>
 					</ul>
 				</li>
+				<li>
+					<a href='{% url "api-contact-list" %}' class="btn btn-xs btn-danger" style="color:white;">API Mode</a>
+				</li>
 			</ul>
 			{% else %}
 			<ul class="nav navbar-nav navbar-right">
@@ -109,14 +107,15 @@
 	    </div>
     </div>
 </nav>
-{% block head %}
-{% endblock %}
 
 {% block body %}
 {% endblock %}
 
 {% block javascript %}
 {% endblock %}
+
+<div class='footer' style="color:white;"><p>&copy Built by DevSid</p></div>
+
 <script src="https://code.jquery.com/jquery-3.1.1.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>    
 </body>

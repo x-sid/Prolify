@@ -52,7 +52,7 @@ class  ContactForm(forms.ModelForm):
     last_name=forms.CharField(required=True,max_length=10,widget=forms.TextInput(attrs={'placeholder': 'Last Name'}))
     country=forms.CharField(required=True,widget=forms.TextInput(attrs={'placeholder': 'Country'}))
     location=forms.CharField(required=True,widget=forms.TextInput(attrs={'placeholder': 'Location'}))
-    description=forms.CharField(required=True,widget=forms.Textarea(attrs={'placeholder': 'Description'}))
+    description=forms.CharField(required=False,widget=forms.Textarea(attrs={'placeholder': 'Description'}))
     phone_number=forms.CharField(required=True,widget=forms.TextInput(attrs={'placeholder': '+234 phone number'}))
 
 

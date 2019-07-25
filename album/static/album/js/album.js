@@ -24,8 +24,8 @@ $(function (){
       dataType: 'json',
       success: function (data) {
         if (data.form_is_valid) {
-          $("#contact .new_album").html(data.html_contact_list); // <-- it updates the album with the newly created contact
-          $("#modal-contact").modal("hide");  // <-- Close the modal
+          $("#contact .album").html(data.html_contact_list); // <-- it updates the album with the newly created contact
+          $("#modal-contact").modal("hide");  // <-- Close the modal          
         }
         else {
           $("#modal-contact .modal-content").html(data.html_form);
