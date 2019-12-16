@@ -100,7 +100,7 @@ def userprofile(request):
 @login_required
 def edituserprofile(request):
     if request.method=='POST':
-       form=EditContactForm(request.POST,instance=request.user)
+       form=EditProfileForm(request.POST,instance=request.user)
        if form.is_valid():
             form.save()
             return redirect('album:userprofile')
