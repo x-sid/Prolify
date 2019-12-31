@@ -25,14 +25,13 @@ class RegisterUserForm(UserCreationForm):
         user.first_name=self.cleaned_data['first_name']
         user.last_name=self.cleaned_data['last_name']
         user.email=self.cleaned_data['email']
-        user.phone_number=self.cleaned_data['phone_number']
-        user.password=self.cleaned_data['password']
-        user.set_password(password)
+        #user.password=self.cleaned_data['password']
+        #user.set_password(password)
 
-        if password1 and password2 and password1 != password2:
-                raise forms.ValidationError(
-                    self.error_messages['password_mismatch'],
-                    code='password_mismatch',)
+        #if password1 and password2 and password1 != password2:
+           #     raise forms.ValidationError(
+             #       self.error_messages['password_mismatch'],
+              #      code='password_mismatch',)
 
         if commit:
             user.save()

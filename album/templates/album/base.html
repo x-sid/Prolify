@@ -12,11 +12,11 @@
 <body>
 <div class="header">
     <div class="container-fluid">
-    	<h1 style="color:white"><b>ProLifY</b></h1>
+    	<h1 style="color:white" class="display-4"><b>ProLifY</b></h1>
     </div>
 </div>
 <!-- navigation bar-->
-<nav class="navbar navbar-inverse " style="margin-bottom:0px">
+<nav class="navbar navbar-inverse" style="margin-bottom:0px">
 	<div class="container-fluid">
 	    <div class="navbar-header">
 	    	<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#topNavBar">
@@ -69,7 +69,7 @@
 							</a>
 				        </li>
 						<li>
-						    <a href="{% url 'logout' %}">
+						    <a href="{% url 'logout' %}?next=/login">
 							  <span class="glyphicon glyphicon-off" aria-hidden="true"></span>&nbsp;Logout
 							</a>
 						</li>
@@ -108,8 +108,10 @@
     </div>
 </nav>
 
-{% block body %}
-{% endblock %}
+	{% block body %}
+	{% endblock %}
+
+
 
 {% block javascript %}
 {% endblock %}
